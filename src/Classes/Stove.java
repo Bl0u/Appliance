@@ -16,20 +16,28 @@ public class Stove implements StoveInterface {
 
     @Override
     public void increaseHeat() {
-        int newHeat = Math.min(getHeat() + 25, 300) ;
-        if (cookingMethodInterface != null) {
-            cookingMethodInterface.onTempChange(newHeat);
+        if (isOn){
+            int newHeat = Math.min(getHeat() + 25, 300) ;
+            if (cookingMethodInterface != null) {
+                cookingMethodInterface.onTempChange(newHeat);
+            }
+            setHeat(newHeat);
+        } else {
+            Logger.logOperation("must start before increasing temp");
         }
-        setHeat(newHeat);
     }
 
     @Override
     public void decreaseHeat() {
-        int newHeat = Math.max(getHeat() - 25, 0) ;
-        if (cookingMethodInterface != null) {
-            cookingMethodInterface.onTempChange(newHeat);
+        if (isOn){
+            int newHeat = Math.max(getHeat() - 25, 0) ;
+            if (cookingMethodInterface != null) {
+                cookingMethodInterface.onTempChange(newHeat);
+            }
+            setHeat(newHeat);
+        } else {
+            Logger.logOperation("must start before decreasing temp");
         }
-        setHeat(newHeat);
     }
 
     @Override
@@ -50,7 +58,7 @@ public class Stove implements StoveInterface {
     public void turnOff() {
         this.isOn = false;
         if (cookingMethodInterface != null) {
-            cookingMethodInterface.onStateChange(this.isOn);
+            cookingMethodInterface.onStateChange(false);
         }
     }
 
@@ -58,7 +66,7 @@ public class Stove implements StoveInterface {
     public void turnOn() {
         this.isOn = true;
         if (cookingMethodInterface != null) {
-            cookingMethodInterface.onStateChange(this.isOn);
+            cookingMethodInterface.onStateChange(true);
         }
     }
 
