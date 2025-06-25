@@ -7,10 +7,6 @@ A Java implementation of a smart kitchen system demonstrating **SOLID principles
 - [Features](#features)
 - [Design Patterns Used](#design-patterns-used)
 - [SOLID Principles Applied](#solid-principles-applied)
-- [Project Structure](#project-structure)
-- [How to Run](#how-to-run)
-- [Usage Examples](#usage-examples)
-- [Contributing](#contributing)
 
 ## 🎯 Problem Statement
 
